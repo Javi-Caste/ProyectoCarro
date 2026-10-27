@@ -44,6 +44,7 @@ enum ModoJuego {
   EVITAR_MARCAS
 };
 
+//  Variables de juego 
 EstadoJuego estado = INACTIVO;
 ModoJuego modo = SIN_MODO;
 
@@ -53,6 +54,47 @@ uint16_t marcasDetectadas = 0;
 
 uint32_t inicioRTC = 0;
 uint32_t finalRTC = 0;
+
+// METODOS DE MOVIMIENTO
+void girarDerecha(){
+  // Motor izquierdo hacia delante y motor derecho hacia atras.
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENA, velocidad);
+  analogWrite(ENB, velocidad);
+}
+
+void girarIzquierda(){
+  // Motor izquierdo hacia atras y motor derecho hacia delante.
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, velocidad);
+  analogWrite(ENB, velocidad);
+}
+
+void avanzar(){
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, velocidad);
+  analogWrite(ENB, velocidad);
+}
+
+void retroceder(){
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENA, velocidad);
+  analogWrite(ENB, velocidad);
+}
+
+
 
 void detenerMotores() {
   digitalWrite(IN1, LOW);
